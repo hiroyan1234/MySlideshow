@@ -6,6 +6,8 @@
     const next = document.getElementById('next');
     const prev = document.getElementById('prev');
     let activeIndex = 0;
+    setTimeout(imgChange, 1000);
+
 
     thumbnails[0].addEventListener('click', () => {
       activeIndex = 0;
@@ -43,7 +45,7 @@
       thumbnails[2].classList.remove('active');
       thumbnails[activeIndex].classList.add('active');
     })
-    
+
     prev.addEventListener('click', () => {
       activeIndex--;
       if (activeIndex < 0) {
@@ -56,4 +58,18 @@
       thumbnails[2].classList.remove('active');
       thumbnails[activeIndex].classList.add('active');
     })
+
+    function imgChange() {
+      activeIndex++;
+      if (activeIndex > 2) {
+        activeIndex = 0;
+      }
+
+      mainImage.src = thumbnails[activeIndex].src
+      thumbnails[0].classList.remove('active');
+      thumbnails[1].classList.remove('active');
+      thumbnails[2].classList.remove('active');
+      thumbnails[activeIndex].classList.add('active');
+      setTimeout(imgChange, 1000);
+    }
 }
